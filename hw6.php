@@ -1,8 +1,7 @@
 <?php
 
 interface iLogger{
-    public function write($result){
-    }
+    public function write($result);
 }
 
 
@@ -41,6 +40,22 @@ class TimeFileLogger implements iLogger
         }echo "Заполните поле текст!";
     }
 }
+
+$a = new SomeClass(new FileLogger());
+$a->doSmt('message');
+
+class SomeClass{
+    private $loger;
+    public function __construct($loger)
+    {
+        $this->loger = $loger;
+    }
+
+    public function doSmt($result){
+        $this->loger->write($result);
+    }
+}
+
 ?>
 <form action="" method="post">
     <label>Запишите на память</label>
